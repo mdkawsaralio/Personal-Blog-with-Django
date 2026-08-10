@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static  %}
+{% block title %}
+My Blog
+
+{% endblock  %}
+
+{% block css_file %}
+<link rel="stylesheet" href="{% static "blog/index.css" %}">
+<link rel="stylesheet" href="{%static "blog/post.css"%}">
+{% endblock  %}
+
+{% block content %}
+
+
+
+<section id="welcome">
+    <header>
+    <img src="{%static "blog/images/professional.png"%}" alt="kawsar the author of this blog">
+<h2>
+    Kawsar Blog
+</h2>
+</header>
+<p> Hi, I am kawsar and i love to blog about tech and the world! </p>
+</section>
+<section id ="latest-posts">
+    <h2>My Latest Thoughts</h2>
+<ul>
+    {% include "blog/include/posts.html"%}
+</ul>
+</section>
+
+<section id="about">
+    <h2>what i do </h2>
+    <p> i love programming</p>
+    <p>my goal is to growing as developer </p>
+</section>
+{% endblock  %}
