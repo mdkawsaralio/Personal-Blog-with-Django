@@ -14,12 +14,10 @@ All My posts
 <section id="all-posts">
     <h2>My Collected Posts</h2>
 <ul>
+    {% for post in all_post  %}
     {% include "blog/include/posts.html"%}
-    {% include "blog/include/posts.html"%}
-    {% include "blog/include/posts.html"%}
-    {% include "blog/include/posts.html"%}
-    {% include "blog/include/posts.html"%}
-    {% include "blog/include/posts.html"%}
+{% endfor %}
+
 </ul>
 
 </section>
