@@ -14,8 +14,8 @@ This post Title
 <section id="summary">
     <h2>Post Title</h2>
     <article>
-        <img src="{% static "blog/images/"|add:post.image %}" alt="">
-        <address>By {{post.author}}</address>
+        <img src="{% static "blog/images/"|add:post.image_name %}" alt="">
+        <address>By <a href="mailto:{{post.author.email_address}}">{{post.author}}</a></address>
         <div>
             Last updata on <time>{{post.date}}</time>
         </div>

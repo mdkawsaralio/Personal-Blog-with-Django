@@ -33,7 +33,10 @@ body {
   text-align: right;
   color: white;
 }
-
+#summary a{
+  color: white;
+  text-decoration: none;
+}
 #summary article img {
   width: 12rem;
   height: 12rem;
