@@ -4,17 +4,37 @@ from django.urls import reverse
 from django.utils.text import slugify
 # Create your models here.
 
+
+class Country(models.Model):
+    name=models.CharField(max_length=80)
+    code=models.IntegerField(validators=[MinValueValidator(1)])
+
+    def __str__(self):
+        return f"{self.name}, {self.code}"
+
+
+
+class address(models.Model):
+    street=models.CharField(max_length=100)
+    postal_code=models.IntegerField(validators=[MinValueValidator(9000)])
+    city=models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.street}, {self.postal_code}, {self.city}"
+
+    class Meta:
+        verbose_name_plural='Address Entries'
+
 class Author(models.Model):
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
+    address=models.OneToOneField(address,on_delete=models.CASCADE,null=True)
 
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         return self.full_name()
-
-
 
 class Book(models.Model):
     title = models. CharField(max_length=50)
@@ -24,11 +44,12 @@ class Book(models.Model):
     is_bestselling = models. BooleanField(default=False)
     # Harry Potter 1 => harry-potter-1
     slug = models. SlugField(default="", blank=True, null=False, db_index=True)
+    published_contries=models.ManyToManyField(Country)
 
 
     def save(self,*args,**kwargs):
         self.slug=slugify(self.title)
-        super().save(*args,**kwargs)
+        return super().save(*args,**kwargs)
 
     def url_id(self):
         return reverse('book',args=[self.id])
